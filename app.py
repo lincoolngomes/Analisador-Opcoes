@@ -62,7 +62,7 @@ st.plotly_chart(fig)
 
 import requests
 from bs4 import BeautifulSoup
-import json2 as json
+import json
 import datetime as dt
 
 
@@ -255,7 +255,7 @@ opcoes_put['Preço ação'] = cotacao_ativo
 st.subheader('Tabela de Opções - ' + nome_acao_escolhida)
 st.write(opcoes_call.tail(10))
 
-st.write(opcoes_put)
+st.write(df)
 
 from st_keyup import st_keyup
 import math
