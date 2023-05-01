@@ -2,3 +2,5 @@ yfinance
 https://files.pythonhosted.org/packages/20/e7/e8f1470e28f0532c49c37618bd141eaca5c7b99f6af23fd3794d9ef1d537/yfinance-0.2.18-py2.py3-none-any.whl
 plotly
 https://files.pythonhosted.org/packages/15/5c/786e4572cf3217ba1707eeb99fe4bdb8fb138237690fa21641e341b1970c/plotly-5.14.1-py2.py3-none-any.whl
+streamlit_extras
+https://files.pythonhosted.org/packages/b8/1d/7b9ca1a073d5d3eeffeeb5a65102a14015f7e9b3fefb6d93e9188847d97e/streamlit_extras-0.2.7-py3-none-any.whl
