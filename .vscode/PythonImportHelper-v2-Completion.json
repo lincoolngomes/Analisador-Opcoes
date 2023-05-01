@@ -1,0 +1,162 @@
+[
+    {
+        "label": "streamlit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "detail": "streamlit",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "yfinance",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "yfinance",
+        "description": "yfinance",
+        "detail": "yfinance",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "graph_objs",
+        "importPath": "plotly",
+        "description": "plotly",
+        "isExtraImport": true,
+        "detail": "plotly",
+        "documentation": {}
+    },
+    {
+        "label": "pegar_dados_acoes",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def pegar_dados_acoes():\n    path = 'acoes.csv'\n    return pd.read_csv(path, delimiter=';')\ndf = pegar_dados_acoes()\nacao = df['snome']\nnome_acao_escolhida = st.sidebar.selectbox('Escolha uma ação', acao)\ndf_acao = df[df['snome'] == nome_acao_escolhida]\nacao_escolhida = df_acao.iloc[0]['sigla_acao']\nacao_escolhida = acao_escolhida + '.SA'\n@st.cache_data",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "pegar_valores_online",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def pegar_valores_online(sigla_acao):\n    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM)\n    df.reset_index(inplace=True)\n    return df\ndf_valores = pegar_valores_online(acao_escolhida)\nst.subheader('Tabela de valores - ' + nome_acao_escolhida)\nst.write(df_valores.tail(10))\n# Criar grafico\nst.subheader('Gráfico de preços')\nfig = go.Figure()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "DATA_INICIO",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "DATA_INICIO = '2023-01-01'\nDATA_FIM = date.today().strftime('%Y-%m-%d')\nst.title('Analise de ações')\n# Criando a sudebar\nst.sidebar.header('Escolha a ação')\nn_dias = st.slider('Dias p/ previsão', 30, 365)\ndef pegar_dados_acoes():\n    path = 'acoes.csv'\n    return pd.read_csv(path, delimiter=';')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "DATA_FIM",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "DATA_FIM = date.today().strftime('%Y-%m-%d')\nst.title('Analise de ações')\n# Criando a sudebar\nst.sidebar.header('Escolha a ação')\nn_dias = st.slider('Dias p/ previsão', 30, 365)\ndef pegar_dados_acoes():\n    path = 'acoes.csv'\n    return pd.read_csv(path, delimiter=';')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "n_dias",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "n_dias = st.slider('Dias p/ previsão', 30, 365)\ndef pegar_dados_acoes():\n    path = 'acoes.csv'\n    return pd.read_csv(path, delimiter=';')\ndf = pegar_dados_acoes()\nacao = df['snome']\nnome_acao_escolhida = st.sidebar.selectbox('Escolha uma ação', acao)\ndf_acao = df[df['snome'] == nome_acao_escolhida]\nacao_escolhida = df_acao.iloc[0]['sigla_acao']\nacao_escolhida = acao_escolhida + '.SA'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "df = pegar_dados_acoes()\nacao = df['snome']\nnome_acao_escolhida = st.sidebar.selectbox('Escolha uma ação', acao)\ndf_acao = df[df['snome'] == nome_acao_escolhida]\nacao_escolhida = df_acao.iloc[0]['sigla_acao']\nacao_escolhida = acao_escolhida + '.SA'\n@st.cache_data\ndef pegar_valores_online(sigla_acao):\n    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM)\n    df.reset_index(inplace=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "acao",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "acao = df['snome']\nnome_acao_escolhida = st.sidebar.selectbox('Escolha uma ação', acao)\ndf_acao = df[df['snome'] == nome_acao_escolhida]\nacao_escolhida = df_acao.iloc[0]['sigla_acao']\nacao_escolhida = acao_escolhida + '.SA'\n@st.cache_data\ndef pegar_valores_online(sigla_acao):\n    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM)\n    df.reset_index(inplace=True)\n    return df",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "nome_acao_escolhida",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "nome_acao_escolhida = st.sidebar.selectbox('Escolha uma ação', acao)\ndf_acao = df[df['snome'] == nome_acao_escolhida]\nacao_escolhida = df_acao.iloc[0]['sigla_acao']\nacao_escolhida = acao_escolhida + '.SA'\n@st.cache_data\ndef pegar_valores_online(sigla_acao):\n    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM)\n    df.reset_index(inplace=True)\n    return df\ndf_valores = pegar_valores_online(acao_escolhida)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "df_acao",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "df_acao = df[df['snome'] == nome_acao_escolhida]\nacao_escolhida = df_acao.iloc[0]['sigla_acao']\nacao_escolhida = acao_escolhida + '.SA'\n@st.cache_data\ndef pegar_valores_online(sigla_acao):\n    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM)\n    df.reset_index(inplace=True)\n    return df\ndf_valores = pegar_valores_online(acao_escolhida)\nst.subheader('Tabela de valores - ' + nome_acao_escolhida)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "acao_escolhida",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "acao_escolhida = df_acao.iloc[0]['sigla_acao']\nacao_escolhida = acao_escolhida + '.SA'\n@st.cache_data\ndef pegar_valores_online(sigla_acao):\n    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM)\n    df.reset_index(inplace=True)\n    return df\ndf_valores = pegar_valores_online(acao_escolhida)\nst.subheader('Tabela de valores - ' + nome_acao_escolhida)\nst.write(df_valores.tail(10))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "acao_escolhida",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "acao_escolhida = acao_escolhida + '.SA'\n@st.cache_data\ndef pegar_valores_online(sigla_acao):\n    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM)\n    df.reset_index(inplace=True)\n    return df\ndf_valores = pegar_valores_online(acao_escolhida)\nst.subheader('Tabela de valores - ' + nome_acao_escolhida)\nst.write(df_valores.tail(10))\n# Criar grafico",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "df_valores",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "df_valores = pegar_valores_online(acao_escolhida)\nst.subheader('Tabela de valores - ' + nome_acao_escolhida)\nst.write(df_valores.tail(10))\n# Criar grafico\nst.subheader('Gráfico de preços')\nfig = go.Figure()\nfig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Close'], name='Preço Fechamento', line_color='yellow'))\nfig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Open'], name='Preço Abertura', line_color='blue'))\nst.plotly_chart(fig)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "fig",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "fig = go.Figure()\nfig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Close'], name='Preço Fechamento', line_color='yellow'))\nfig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Open'], name='Preço Abertura', line_color='blue'))\nst.plotly_chart(fig)",
+        "detail": "app",
+        "documentation": {}
+    }
+]
