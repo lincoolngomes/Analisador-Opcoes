@@ -1,0 +1,2 @@
+yfinance
+https://files.pythonhosted.org/packages/20/e7/e8f1470e28f0532c49c37618bd141eaca5c7b99f6af23fd3794d9ef1d537/yfinance-0.2.18-py2.py3-none-any.whl
