@@ -62,7 +62,7 @@ st.plotly_chart(fig)
 
 import requests
 from bs4 import BeautifulSoup
-import json
+import json2 as json
 import datetime as dt
 
 
