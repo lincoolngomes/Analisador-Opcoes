@@ -21,10 +21,6 @@ st.title('Analise de ações')
 
 st.sidebar.header('Escolha a ação')
 
-
-n_dias = st.slider('Dias p/ previsão', 30, 365)
-
-
 def pegar_dados_acoes():
 
     path = 'acoes.csv'
@@ -251,46 +247,11 @@ opcoes_put = df[(df['Bid'] > 0) & (df['Opção'] == 'PUT')
                 & (df['Dias até o Vencimento'] <= 70)]
 opcoes_put['Preço ação'] = cotacao_ativo
 
-
-st.subheader('Tabela de Opções - ' + nome_acao_escolhida)
+st.markdown('''
+# Melhores opções ''')
 st.write(opcoes_call.tail(10))
 
+st.markdown('''
+## Todas opções de  ''' + acao_escolhida)
 st.write(df)
 
-from st_keyup import st_keyup
-import math
-
-st.write('Calculadora - Black Scholes')
-
-
-def d1(S, K, r, sigma, T):
-    return (math.log(S/K) + (r + sigma**2/2)*T) / (sigma*math.sqrt(T))
-
-def d2(S, K, r, sigma, T):
-    return d1(S, K, r, sigma, T) - sigma*math.sqrt(T)
-
-def black_scholes_call(S, K, r, sigma, T):
-    d1_val = d1(S, K, r, sigma, T)
-    d2_val = d2(S, K, r, sigma, T)
-    return S*math.erf(d1_val/2**0.5) - K*math.exp(-r*T)*math.erf(d2_val/2**0.5)
-
-def black_scholes_put(S, K, r, sigma, T):
-    d1_val = d1(S, K, r, sigma, T)
-    d2_val = d2(S, K, r, sigma, T)
-    return K*math.exp(-r*T)*math.erf(-d2_val/2**0.5) - S*math.erf(-d1_val/2**0.5)
-
-# Exemplo de uso
-S = st.number_input('Insira o preço do ativo', value=10)  # preço do ativo subjacente
-K = st.number_input('Insira o strike da opção', value=110)  # preço de exercício
-r = st.number_input('Insira o taxa de juros', value=13.75)
-sigma = st.number_input('Insira o volatilidade', value=0.3)
-T = st.number_input('Insira o strike da opção', value=(30/252))
-
-call_price = black_scholes_call(S, K, r, sigma, T)
-put_price = black_scholes_put(S, K, r, sigma, T)
-
-print(f"O preço da opção de compra é {call_price:.2f}")
-print(f"O preço da opção de venda é {put_price:.2f}")
-
-
-st.write(call_price, put_price)
