@@ -10,5 +10,4 @@ beautifulsoup4
 https://files.pythonhosted.org/packages/57/f4/a69c20ee4f660081a7dedb1ac57f29be9378e04edfcb90c526b923d4bebc/beautifulsoup4-4.12.2-py3-none-any.whl
 json2
 https://files.pythonhosted.org/packages/de/7f/4652614a64d514538de6d5c3408350fa514689e62ba33c567f6d60baeaaa/json2-0.4.0-py3-none-any.whl
-pandas
-https://files.pythonhosted.org/packages/f7/56/38f5d7ccd495451979d38dc7d534035989f2dadf183600c53ae5501dff3d/pandas-2.0.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+-pandas
