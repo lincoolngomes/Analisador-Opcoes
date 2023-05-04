@@ -47,7 +47,7 @@ def pegar_valores_online(sigla_acao):
 df_valores = pegar_valores_online(acao_escolhida)
 
 st.subheader('Tabela de valores - ' + nome_acao_escolhida)
-st.write(df_valores.tail(10))
+st.write(df_valores.tail(10).sort_values(['Date'], ascending=False))
 
 # Criar grafico
 st.subheader('Gráfico de preços')
@@ -268,4 +268,3 @@ st.write(opcoes_put.tail(10))
 st.markdown('''
 ## Todas opções de  ''' + acao_escolhida)
 st.write(df)
-
