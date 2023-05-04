@@ -73,6 +73,10 @@ soup = BeautifulSoup(response.content, 'html.parser')
 script = soup.find('script', {'id': '__NEXT_DATA__'})
 json_data = json.loads(script.string)
 
+if 'series' not in json_data['props']['pageProps']:
+    st.warning(' Essa ação não possui book de opções', icon="⚠️")
+    st.stop()
+
 # Dados opções
 series = json_data['props']['pageProps']['series']
 for option in series:
