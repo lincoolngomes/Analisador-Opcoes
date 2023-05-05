@@ -157,7 +157,7 @@ for option in series:
         bs_ve_over_strike_put = strike['put']['bs']['ve-over-strike']
 
 # Adicionando tabela de call's
-        df = df.append({'Vencimento': due_date, 'Dias até o Vencimento': days_to_maturity,
+call_df = pd.DataFrame({'Vencimento': due_date, 'Dias até o Vencimento': days_to_maturity,
                         'Preço do Strike': strike_price, 'Símbolo': call_symbol, 'Bid': call_bid,
                         'Ask': call_ask,  'Opção': tipo_call,
                         'Tipo': maturity_type_call,
@@ -188,12 +188,14 @@ for option in series:
                         'Taxa de lucro': bs_profit_rate_call,
                         'Taxa de proteção sobre custo': bs_protection_rate_over_cost_call,
                         'Taxa de lucro se exercido': bs_profit_rate_if_exercised_call,
-                        'VE/S': bs_ve_over_strike_call}, ignore_index=True)
+                        'VE/S': bs_ve_over_strike_call}, index=[0])
+
+df = pd.concat([df, call_df], ignore_index=True)
 
 # Adicionando tabela de put's
-        df = df.append({'Vencimento': due_date, 'Dias até o Vencimento': days_to_maturity,
-                        'Preço do Strike': strike_price, 'Símbolo': call_symbol, 'Bid': call_bid,
-                        'Ask': call_ask,  'Opção': tipo_put,
+put_df = pd.DataFrame({'Vencimento': due_date, 'Dias até o Vencimento': days_to_maturity,
+                        'Preço do Strike': strike_price, 'Símbolo': put_symbol, 'Bid': put_bid,
+                        'Ask': put_ask,  'Opção': tipo_put,
                         'Tipo': maturity_type_put,
                         'Volume': volume_put,
                         'Volume Financeiro': financial_volume_put,
@@ -218,11 +220,11 @@ for option in series:
                         'Rho': bs_rho_put,
                         'Volatilidade Implícita': bs_volatility_put,
                         'POE': bs_poe_put,
-                        'Taxa de proteção': bs_protection_rate_put,
-                        'Taxa de lucro': bs_profit_rate_put,
                         'Taxa de proteção sobre custo': bs_protection_rate_over_cost_put,
                         'Taxa de lucro se exercido': bs_profit_rate_if_exercised_put,
-                        'VE/S': bs_ve_over_strike_put}, ignore_index=True)
+                        'VE/S': bs_ve_over_strike_put}, index=[0])
+
+df = pd.concat([df, put_df], ignore_index=True)
 
 # Index DataFrame
 df.set_index('Símbolo', inplace=True)
