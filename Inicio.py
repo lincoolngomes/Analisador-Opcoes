@@ -66,5 +66,4 @@ with c1:
 with c2:
     st.info('**GitHub: [@lincoolngomes](https://github.com/lincoolngomes)**', icon="💻")
 with c3:
->>>>>>> 667966c3fa0949f2790f2692cb074cbf9d924741
     st.info('**Linkedin: [@lincoolngomes](https://www.linkedin.com/in/lincoln-gomes/)**', icon="💡")
