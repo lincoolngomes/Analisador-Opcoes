@@ -31,7 +31,6 @@ with c1:
 with c2:
     st.info('**GitHub: [@lincoolngomes](https://github.com/lincoolngomes)**', icon="💻")
 with c3:
-=======
 import streamlit as st
 
 # Config página
