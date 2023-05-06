@@ -4,6 +4,8 @@ import yfinance as yf
 import datetime as dt
 from plotly import graph_objs as go
 from streamlit_extras.no_default_selectbox import selectbox
+import os
+os.environ['TZ'] = 'America/Sao_Paulo'
 
 
 # from fbprohet import Prophet
