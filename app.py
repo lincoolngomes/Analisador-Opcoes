@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import yfinance as yf
-from datetime import date
+import datetime as dt
 from plotly import graph_objs as go
 from streamlit_extras.no_default_selectbox import selectbox
 
@@ -11,7 +11,7 @@ from streamlit_extras.no_default_selectbox import selectbox
 
 DATA_INICIO = '2023-01-01'
 
-DATA_FIM = date.today().strftime('%Y-%m-%d')
+DATA_FIM = dt.datetime.today()
 
 
 st.title('Analise de ações')
@@ -47,7 +47,8 @@ def pegar_valores_online(sigla_acao):
 df_valores = pegar_valores_online(acao_escolhida)
 
 st.subheader('Tabela de valores - ' + nome_acao_escolhida)
-st.write(df_valores.tail(10).sort_values(['Date'], ascending=False))
+st.write(df_valores)
+st.write(dt.datetime.now())
 
 # Criar grafico
 st.subheader('Gráfico de preços')
