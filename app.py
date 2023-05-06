@@ -191,7 +191,7 @@ for option in series:
                         'VE/S': bs_ve_over_strike_call}, index=[0])], ignore_index=True)
 
 # Adicionando tabela de put's
-        df = df.append({'Vencimento': due_date, 'Dias até o Vencimento': days_to_maturity,
+        df = pd.concat([df, pd.DataFrame({'Vencimento': due_date, 'Dias até o Vencimento': days_to_maturity,
                         'Preço do Strike': strike_price, 'Símbolo': call_symbol, 'Bid': call_bid,
                         'Ask': call_ask,  'Opção': tipo_put,
                         'Tipo': maturity_type_put,
@@ -222,7 +222,7 @@ for option in series:
                         'Taxa de lucro': bs_profit_rate_put,
                         'Taxa de proteção sobre custo': bs_protection_rate_over_cost_put,
                         'Taxa de lucro se exercido': bs_profit_rate_if_exercised_put,
-                        'VE/S': bs_ve_over_strike_put}, ignore_index=True)
+                        'VE/S': bs_ve_over_strike_put}, index=[0])], ignore_index=True)
 
 # Index DataFrame
 df.set_index('Símbolo', inplace=True)
