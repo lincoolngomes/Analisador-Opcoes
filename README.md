@@ -7,4 +7,4 @@ Nossa plataforma contará com ferramentas de pesquisa avançadas, dados em tempo
 
 Agradecemos antecipadamente pela sua paciência enquanto trabalhamos para aprimorar nossa plataforma e adicionar novos recursos. Estamos sempre abertos a feedbacks e sugestões, portanto, se você tiver alguma ideia para melhorar nossa plataforma, não hesite em entrar em contato conosco. Obrigado por escolher nossa plataforma para ajudá-lo a alcançar seus objetivos de investimento.**.
 
-Para acessar, [clique aqui](https://analisador-opcoes.streamlit.app/):
+Para acessar, [clique aqui](https://dash-opcoes.streamlit.app/):
