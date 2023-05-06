@@ -8,8 +8,12 @@ import json
 from plotly import graph_objs as go
 from bs4 import BeautifulSoup
 
+# Config
+st.set_page_config(page_title='Book de Opções', page_icon='🌍', layout='wide')
 
-DATA_INICIO = '2023-01-01'
+st.title('🌍 Book de Opções')
+
+DATA_INICIO = '2000-01-01'
 
 DATA_FIM = dt.datetime.today()
 
@@ -26,6 +30,8 @@ df_acao = pegar_dados_acoes()
 
 
 acao = df_acao['snome']
+
+
 nome_acao_escolhida = st.selectbox('Escolha uma ação', acao)
 
 df_ativo = df_acao[df_acao['snome'] == nome_acao_escolhida]
@@ -39,18 +45,27 @@ def pegar_valores_online(sigla_acao):
     df.reset_index(inplace=True)
     return df
 
-df_valores = pegar_valores_online(acao_escolhida)
+df_valores = pegar_valores_online(acao_escolhida).sort_values('Date', ascending=False)
 
-st.subheader('Tabela de valores - ' + nome_acao_escolhida)
-st.write(df_valores)
-st.write(dt.datetime.now())
 
 # Criar grafico
-st.subheader('Gráfico de preços')
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Close'], name='Preço Fechamento', line_color='yellow'))
-fig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Open'], name='Preço Abertura', line_color='blue'))
+fig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Adj Close'], name='Preço', line_color='blue'))
 st.plotly_chart(fig)
+
+st.subheader('Tabela de valores - ' + nome_acao_escolhida)
+# Criar colunas
+col1, col2 = st.columns(2)
+
+with col1:
+    st.write(df_valores)
+
+with col2:
+    st.subheader("Cotação atual:")
+    st.title(round(df_valores['Adj Close'].iloc[-1], 2))
+
+
+st.write(dt.datetime.now())
 
 # Defina o DataFrame pandas com as colunas que deseja
 df = pd.DataFrame()
@@ -243,14 +258,15 @@ opcoes_put = df[(df['Bid'] > 0) &
 opcoes_put['Preço ação'] = cotacao_ativo
 
 st.markdown('''
-# Melhores CALL'S  :chart_with_upwards_trend:''')
+### Melhores CALL'S  :chart_with_upwards_trend:''')
 st.write(opcoes_call.tail(10))
 
 st.markdown('''
-# Melhores PUT'S :chart_with_downwards_trend:''')
+### Melhores PUT'S :chart_with_downwards_trend:''')
 st.write(opcoes_put.tail(10))
 
 st.markdown('''
-## Todas opções de  ''' + acao_escolhida)
+### Todas opções de  ''' + acao_escolhida)
 st.write(df)
+
 
