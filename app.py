@@ -2,13 +2,11 @@ import streamlit as st
 import pandas as pd
 import yfinance as yf
 import datetime as dt
+import streamlit_extras
+import requests
+import json
 from plotly import graph_objs as go
-from streamlit_extras.no_default_selectbox import selectbox
-import os
-os.environ['TZ'] = 'America/Sao_Paulo'
-
-
-# from fbprohet import Prophet
+from bs4 import BeautifulSoup
 
 
 DATA_INICIO = '2023-01-01'
@@ -17,11 +15,6 @@ DATA_FIM = dt.datetime.today()
 
 
 st.title('Analise de ações')
-
-
-# Criando a sudebar
-
-st.sidebar.header('Escolha a ação')
 
 def pegar_dados_acoes():
 
@@ -33,7 +26,7 @@ df_acao = pegar_dados_acoes()
 
 
 acao = df_acao['snome']
-nome_acao_escolhida = st.sidebar.selectbox('Escolha uma ação', acao)
+nome_acao_escolhida = st.selectbox('Escolha uma ação', acao)
 
 df_ativo = df_acao[df_acao['snome'] == nome_acao_escolhida]
 acao_escolhida = df_ativo.iloc[0]['sigla_acao']
@@ -58,12 +51,6 @@ fig = go.Figure()
 fig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Close'], name='Preço Fechamento', line_color='yellow'))
 fig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Open'], name='Preço Abertura', line_color='blue'))
 st.plotly_chart(fig)
-
-import requests
-from bs4 import BeautifulSoup
-import json
-import datetime as dt
-
 
 # Defina o DataFrame pandas com as colunas que deseja
 df = pd.DataFrame()
@@ -230,12 +217,7 @@ for option in series:
 # Index DataFrame
 df.set_index('Símbolo', inplace=True)
 
-# Yahoo Finance
-
-data_inicial = dt.datetime(2023, 1, 1)
-data_final = dt.datetime.today()
-cotacao_ativo = yf.download(
-    acao_escolhida, data_inicial, data_final)['Adj Close'].iloc[-1]
+cotacao_ativo = df_valores['Adj Close'].iloc[-1]
 
 
 # Configuração de filtro e personalização de colunas DataFrame
