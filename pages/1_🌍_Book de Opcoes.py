@@ -62,7 +62,7 @@ with col1:
 
 with col2:
     st.subheader("Cotação atual:")
-    st.title(df_valores['Adj Close'].iloc[0])
+    st.title(round(df_valores['Adj Close'].iloc[0], 2))
 
 
 st.write(dt.datetime.now())
