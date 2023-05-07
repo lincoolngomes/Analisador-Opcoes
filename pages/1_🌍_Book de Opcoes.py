@@ -13,6 +13,15 @@ st.set_page_config(page_title='Book de Opções', page_icon='🌍', layout='wide
 
 st.title('🌍 Book de Opções')
 
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
+
 DATA_INICIO = '2000-01-01'
 
 DATA_FIM = dt.datetime.today()
@@ -44,13 +53,16 @@ def pegar_valores_online(sigla_acao):
     df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM)
     df.reset_index(inplace=True)
     return df
+    
 
 df_valores = pegar_valores_online(acao_escolhida).sort_values('Date', ascending=False)
+df_valores['Date'] = df_valores['Date'].dt.strftime('%d/%m/%Y')
 
+df_grafico = pegar_valores_online(acao_escolhida).sort_values('Date', ascending=False)
 
 # Criar grafico
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=df_valores['Date'], y=df_valores['Adj Close'], name='Preço', line_color='blue'))
+fig.add_trace(go.Scatter(x=df_grafico['Date'], y=df_grafico['Adj Close'], name='Preço', line_color='blue'))
 st.plotly_chart(fig)
 
 st.subheader('Tabela de valores - ' + nome_acao_escolhida)
@@ -58,14 +70,11 @@ st.subheader('Tabela de valores - ' + nome_acao_escolhida)
 col1, col2 = st.columns(2)
 
 with col1:
-    st.write(df_valores)
+    st.write(df_valores.head(10))
 
 with col2:
     st.subheader("Cotação atual:")
     st.title(round(df_valores['Adj Close'].iloc[0], 2))
-
-
-st.write(dt.datetime.now())
 
 # Defina o DataFrame pandas com as colunas que deseja
 df = pd.DataFrame()
