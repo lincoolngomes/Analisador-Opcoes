@@ -251,7 +251,7 @@ opcoes_call = df[(df['Bid'] > 0) &
     (df['Volume Financeiro'] > 10) &
     (df['Preço do Strike'] >= cotacao_ativo) &
     (df['Delta'] <= 0.30) &
-    (df['Tipo'] == 'EUROPEAN')].sort_values(['Dias até o Vencimento','Taxa de lucro se exercido'], ascending=[True, False]).iloc[0:5]
+    (df['Tipo'] == 'EUROPEAN')].sort_values(['Dias até o Vencimento','Taxa de lucro se exercido'], ascending=[True, False]).iloc[0:10]
 
 opcoes_call['Preço ação'] = cotacao_ativo
 
@@ -260,9 +260,8 @@ opcoes_put = df[(df['Bid'] > 0) &
 (df['Opção'] == 'PUT') &
 (df['Dias até o Vencimento'] <= 70) &
 (df['Volume Financeiro'] >= 10) &
-(df['Preço do Strike'] <= cotacao_ativo) &
 (df['Delta'] <= 0.30) &
-(df['Tipo'] == 'EUROPEAN')].sort_values(['Dias até o Vencimento','Taxa de lucro se exercido'], ascending=[True, False]).iloc[0:5]
+(df['Tipo'] == 'EUROPEAN')].sort_values(['Dias até o Vencimento','Taxa de lucro se exercido'], ascending=[True, False]).iloc[0:10]
 
 opcoes_put['Preço ação'] = cotacao_ativo
 
