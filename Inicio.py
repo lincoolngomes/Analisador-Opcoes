@@ -8,6 +8,15 @@ st.set_page_config(
 
 st.title("Seja bem vindo(a)!")
 
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
+
 st.write(
     """
     Essa página está em desenvolvimento, o objetivo da página é facilitar na busca, estudo e análise de ações. Nosso objetivo é fornecer uma plataforma intuitiva e fácil de usar para investidores iniciantes e experientes. Estamos trabalhando duro para trazer recursos úteis para ajudar a tornar o processo de análise de ações mais fácil e acessível para todos.
